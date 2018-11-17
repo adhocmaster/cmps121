@@ -1,6 +1,10 @@
-csv1 = "F:\\myProjects\\cmps121\\Interim Presentations - Tuesday (Responses) - Form Responses 1.csv"
+csvPath = "F:\\myProjects\\cmps121\\Interim Presentations - Tuesday (Responses) - Form Responses 1.csv"
+outputPath = "F:\\myProjects\\cmps121\\interim-tuesday-aggregated.csv"
 
-csvList = read.csv( csv1, stringsAsFactors = FALSE, header = TRUE, check.names = FALSE )
+csvPath = "F:\\myProjects\\cmps121\\Interim Presentations - Thursday (Responses) - Form Responses 1.csv"
+outputPath = "F:\\myProjects\\cmps121\\interim-thursday-aggregated.csv"
+
+csvList = read.csv( csvPath, stringsAsFactors = FALSE, header = TRUE, check.names = FALSE )
 
 
 #fix( csvList )
@@ -72,3 +76,6 @@ while ( i < colLen ) {
   i = i + 2
   
 }
+
+write.csv( outputDF, file = outputPath )
+
