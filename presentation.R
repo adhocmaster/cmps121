@@ -3,7 +3,7 @@ csv1 = "F:\\myProjects\\cmps121\\Interim Presentations - Tuesday (Responses) - F
 csvList = read.csv( csv1, stringsAsFactors = FALSE, header = TRUE, check.names = FALSE )
 
 
-fix( csvList )
+#fix( csvList )
 
 parseColumnNames = function( rawList ) {
   
@@ -28,9 +28,36 @@ uniqueEmails = unique( emails )
 
 #get each project, email and process
 
-getProjectMarks = function( colName ) {
+getProjectMarks = function( colApp, colPresentation ) {
   
-  return subset( data, )
+  projectSet = subset( data, select = c( "Email.Address", colApp, colPresentation ) ) 
+  
+  return( na.omit( projectSet ) ) 
   
 }
 
+removeDuplicates = function( projectSet ) {
+  
+  return( projectSet[ !duplicated( projectSet$Email.Address), ] )
+}
+
+
+i = 3
+
+cols = names( data )
+colLen = length( cols )
+
+while ( i < colLen ) {
+  
+  print( paste(  "processing:", cols[i], ", ", cols[i+1] ) )
+  
+  projectSet = getProjectMarks( cols[i], cols[i+1] )
+  uniqueMarks = removeDuplicates( projectSet )
+  
+  print( paste( "App mean:", mean( uniqueMarks[[ cols[i] ]]),  
+                "Presentation mean:", mean( uniqueMarks[[ cols[i+1] ]]) 
+                ) )
+  
+  i = i + 2
+  
+}
