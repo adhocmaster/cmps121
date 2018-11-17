@@ -1,6 +1,6 @@
 #utility to combine files
 
-combinedPath = "F:\\myProjects\\cmps121\\interim-aggregated.csv" 
+combinedPath = "F:\\myProjects\\cmps121\\interim-aggregated-peers.csv" 
 outputPaths = c( "F:\\myProjects\\cmps121\\interim-tuesday-aggregated.csv",
                  "F:\\myProjects\\cmps121\\interim-thursday-aggregated.csv"
 )
