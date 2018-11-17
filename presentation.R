@@ -8,10 +8,10 @@ csvList = read.csv( csv1, stringsAsFactors = FALSE, header = TRUE, check.names =
 parseColumnNames = function( rawList ) {
   
   names = names( rawList )
-  n2 = trimws( sub( "Rate the content of the \"", "", names, ignore.case = TRUE ) )
-  n3 = trimws( sub( "\" application based on quality of the application and originality and complexity of the project.", " App", n2, ignore.case = FALSE ) )
-  n4 = trimws( sub("Rate the delivery of the \"", "", n3, ignore.case = TRUE) )
-  n5 = trimws( sub("\" presentation based on professional presentation, engaging audience, clear voice with good pace.", " Presentation", n4, ignore.case = TRUE) )
+  n2 = trimws( sub( "Rate the content of the \"", "", names, fixed = TRUE ) )
+  n3 = trimws( sub( "\" application based on quality of the application and originality and complexity of the project.", " App", n2, fixed = TRUE ) )
+  n4 = trimws( sub("Rate the delivery of the \"", "", n3, fixed = TRUE ) )
+  n5 = trimws( sub("\" presentation based on professional presentation, engaging audience, clear voice with good pace.", " Presentation", n4, fixed = TRUE ) )
   
   #n6 = sub( " ", "_", n5 )
   return( n5 )
@@ -42,11 +42,12 @@ removeDuplicates = function( projectSet ) {
 }
 
 
-i = 3
 
 cols = names( data )
 colLen = length( cols )
+outputDF = data.frame()
 
+i = 3
 while ( i < colLen ) {
   
   print( paste(  "processing:", cols[i], ", ", cols[i+1] ) )
@@ -54,10 +55,20 @@ while ( i < colLen ) {
   projectSet = getProjectMarks( cols[i], cols[i+1] )
   uniqueMarks = removeDuplicates( projectSet )
   
-  print( paste( "App mean:", mean( uniqueMarks[[ cols[i] ]]),  
-                "Presentation mean:", mean( uniqueMarks[[ cols[i+1] ]]) 
+  meanApp = mean( uniqueMarks[[ cols[i] ]])
+  meanPresentation =mean( uniqueMarks[[ cols[i+1] ]]) 
+  print( paste( "App mean:", meanApp,  
+                "Presentation mean:", meanPresentation
                 ) )
   
+  projectName =  sub( ".App", "", cols[i], fixed = TRUE )
+  projectName =  gsub( ".", " ", projectName, fixed = TRUE )
+  outputDF = rbind( outputDF, 
+                    data.frame( name = projectName, 
+                                app = meanApp, 
+                                presentation = meanPresentation  
+                                )
+                    )
   i = i + 2
   
 }
