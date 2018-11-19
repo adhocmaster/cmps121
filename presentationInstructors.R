@@ -1,5 +1,5 @@
 
-csvPath = "F:\\myProjects\\cmps121\\Interim Evaluation - Instructors.csv"
+csvPath = "F:\\myProjects\\cmps121\\Interim Evaluation - Instructors - fixed.csv"
 outputPath = "F:\\myProjects\\cmps121\\interim-instructors.csv"
 
 #must remove the first line from CSV

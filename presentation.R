@@ -1,6 +1,7 @@
+
 csvPath = "F:\\myProjects\\cmps121\\Interim Presentations - Tuesday (Responses) - Form Responses 1.csv"
 outputPath = "F:\\myProjects\\cmps121\\interim-tuesday-aggregated.csv"
-
+#fix what's one the menu ordering
 csvPath = "F:\\myProjects\\cmps121\\Interim Presentations - Thursday (Responses) - Form Responses 1.csv"
 outputPath = "F:\\myProjects\\cmps121\\interim-thursday-aggregated.csv"
 
