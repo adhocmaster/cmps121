@@ -24,10 +24,11 @@ DTJoined[ rowSums( is.na( DTJoined ) ) > 0 , ]
 
 
 
-DTJoined$mark90percent = DTJoined$app * .35 + DTJoined$presentation * .2 + DTJoined$appPeer * .2 + DTJoined$presentationPeer * .15
+DTJoined$mark90percent = ( DTJoined$app * .35 + DTJoined$presentation * .2 + DTJoined$appPeer * .2 + DTJoined$presentationPeer * .15 ) * 2
 fix( DTJoined )
+DTJoined$mark100percent = DTJoined$mark90percent * 10 / 9
 
 #cleanup
-cleanData = subset( DTJoined, select = c( 'name', 'app', 'presentation', 'appPeer', 'presentationPeer', 'mark90percent' ) )
+cleanData = subset( DTJoined, select = c( 'name', 'app', 'presentation', 'appPeer', 'presentationPeer', 'mark90percent', 'mark100percent' ) )
 
 write.csv( cleanData, outputPath )
